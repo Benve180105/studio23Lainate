@@ -1,0 +1,55 @@
+---
+import { getEntry } from 'astro:content';
+import { isStudioOpen } from '../lib/opening-hours';
+
+const contatti = await getEntry('contatti', 'info');
+const { address, phones, email, hours } = contatti!.data;
+const open = isStudioOpen(hours, new Date());
+const mapQuery = encodeURIComponent(address);
+---
+<section id="contatti" class="mx-auto max-w-5xl px-4 py-20">
+  <h2 class="reveal text-center text-3xl font-bold text-brand-primary-dark">Contatti</h2>
+
+  <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div class="reveal space-y-4">
+      <p class="flex items-center gap-2">
+        <span class:list={['rounded-full px-3 py-1 text-xs font-medium', open ? 'bg-brand-primary/10 text-brand-primary-dark' : 'bg-gray-200 text-gray-600']}>
+          {open ? 'Aperto ora' : 'Chiuso ora'}
+        </span>
+      </p>
+      <p><strong>Indirizzo:</strong> {address}</p>
+      <p><strong>Email:</strong> <a href={`mailto:${email}`} class="text-brand-primary hover:underline">{email}</a></p>
+      <p><strong>Telefono:</strong> {phones.join(' · ')}</p>
+      <ul>
+        {hours.map((h) => (
+          <li>{h.days}: {h.time}</li>
+        ))}
+      </ul>
+      <iframe
+        title="Mappa Studio23"
+        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+        class="h-64 w-full rounded-2xl border-0"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <form name="contatto" method="POST" data-netlify="true" class="reveal space-y-4 rounded-2xl bg-white p-6 shadow-sm">
+      <input type="hidden" name="form-name" value="contatto" />
+      <div>
+        <label for="name" class="block text-sm font-medium">Nome</label>
+        <input id="name" name="name" type="text" required class="mt-1 w-full rounded-lg border border-gray-300 p-2" />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input id="email" name="email" type="email" required class="mt-1 w-full rounded-lg border border-gray-300 p-2" />
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium">Messaggio</label>
+        <textarea id="message" name="message" rows="4" required class="mt-1 w-full rounded-lg border border-gray-300 p-2"></textarea>
+      </div>
+      <button type="submit" class="w-full rounded-full bg-brand-primary px-6 py-3 font-medium text-white transition-transform hover:scale-105 hover:bg-brand-primary-dark">
+        Invia richiesta
+      </button>
+    </form>
+  </div>
+</section>
