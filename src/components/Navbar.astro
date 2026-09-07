@@ -1,0 +1,54 @@
+---
+import { getEntry } from 'astro:content';
+import { isStudioOpen } from '../lib/opening-hours';
+
+const contatti = await getEntry('contatti', 'info');
+const open = isStudioOpen(contatti!.data.hours, new Date());
+
+const links = [
+  { id: 'home', label: 'Home' },
+  { id: 'servizi', label: 'Servizi' },
+  { id: 'team', label: 'Team' },
+  { id: 'contatti', label: 'Contatti' },
+];
+---
+<header class="sticky top-0 z-50 bg-brand-bg/90 backdrop-blur transition-shadow" id="site-header">
+  <nav id="site-nav" class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+    <a href="#home" class="font-semibold text-brand-primary-dark">Studio23</a>
+
+    <button id="menu-toggle" class="md:hidden" aria-label="Apri menu" aria-expanded="false">
+      <span class="block h-0.5 w-6 bg-brand-ink"></span>
+      <span class="mt-1 block h-0.5 w-6 bg-brand-ink"></span>
+      <span class="mt-1 block h-0.5 w-6 bg-brand-ink"></span>
+    </button>
+
+    <ul id="nav-links" class="hidden gap-6 md:flex">
+      {links.map((l) => (
+        <li>
+          <a href={`#${l.id}`} data-nav-link={l.id} class="text-brand-ink hover:text-brand-primary">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <span id="open-badge" class:list={[
+      'hidden rounded-full px-3 py-1 text-xs font-medium md:inline-block',
+      open ? 'bg-brand-primary/10 text-brand-primary-dark' : 'bg-gray-200 text-gray-600',
+    ]}>
+      {open ? 'Aperto ora' : 'Chiuso ora'}
+    </span>
+  </nav>
+
+  <ul id="mobile-nav-links" class="hidden flex-col gap-2 bg-brand-bg px-4 pb-4 md:hidden">
+    {links.map((l) => (
+      <li>
+        <a href={`#${l.id}`} data-nav-link={l.id} class="block py-2 text-brand-ink">
+          {l.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</header>
+
+<script src="../scripts/navbar.ts"></script>
