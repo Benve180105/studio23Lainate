@@ -1,0 +1,26 @@
+---
+import { getEntry } from 'astro:content';
+
+const hero = await getEntry('hero', 'hero');
+const { headline, subtitle, cta_text } = hero!.data;
+---
+<section id="home" class="reveal mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-20 text-center md:flex-row md:text-left">
+  <div class="flex-1">
+    <h1 class="text-3xl font-bold text-brand-primary-dark md:text-5xl">{headline}</h1>
+    <p class="mt-4 text-lg text-brand-ink/80">{subtitle}</p>
+    <a
+      href="#contatti"
+      class="mt-8 inline-block rounded-full bg-brand-primary px-6 py-3 font-medium text-white transition-transform hover:scale-105 hover:bg-brand-primary-dark"
+    >
+      {cta_text}
+    </a>
+  </div>
+  <img
+    src="https://picsum.photos/seed/studio23-hero/600/450"
+    alt="Ambiente Studio23"
+    class="flex-1 rounded-2xl object-cover shadow-lg"
+    width="600"
+    height="450"
+    loading="eager"
+  />
+</section>
