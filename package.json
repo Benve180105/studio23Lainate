@@ -21,6 +21,7 @@
     "esbuild": true
   },
   "devDependencies": {
+    "gray-matter": "^4.0.3",
     "vitest": "^5.0.0"
   }
 }
