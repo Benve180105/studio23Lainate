@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import TeamMember from './TeamMember.astro';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+---
+<section id="team" class="mx-auto max-w-5xl px-4 py-20">
+  <h2 class="reveal text-center text-3xl font-bold text-brand-primary-dark">Il team</h2>
+  <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+    {team.map((member) => (
+      <TeamMember
+        name={member.data.name}
+        role={member.data.role}
+        bio={member.data.bio}
+        seed={member.id}
+      />
+    ))}
+  </div>
+</section>

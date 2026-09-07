@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  bio: string;
+  seed: string;
+}
+const { name, role, bio, seed } = Astro.props;
+---
+<div class="reveal flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-sm">
+  <img
+    src={`https://picsum.photos/seed/studio23-${seed}/240/240`}
+    alt={name}
+    width="120"
+    height="120"
+    class="h-30 w-30 rounded-full object-cover"
+  />
+  <h3 class="mt-4 text-lg font-semibold text-brand-primary-dark">{name}</h3>
+  <p class="text-sm font-medium text-brand-primary">{role}</p>
+  <p class="mt-2 text-brand-ink/80">{bio}</p>
+</div>
