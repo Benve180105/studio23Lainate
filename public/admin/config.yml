@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "hero"
+    label: "Home"
+    files:
+      - file: "src/content/hero/hero.md"
+        name: "hero"
+        label: "Sezione Home"
+        fields:
+          - { label: "Titolo", name: "headline", widget: "string" }
+          - { label: "Sottotitolo", name: "subtitle", widget: "text" }
+          - { label: "Testo pulsante", name: "cta_text", widget: "string" }
+
+  - name: "servizi"
+    label: "Servizi"
+    folder: "src/content/servizi"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Descrizione", name: "description", widget: "text" }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nome", name: "name", widget: "string" }
+      - { label: "Ruolo", name: "role", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "contatti"
+    label: "Contatti"
+    files:
+      - file: "src/content/contatti/info.md"
+        name: "contatti"
+        label: "Informazioni di contatto"
+        fields:
+          - { label: "Indirizzo", name: "address", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - label: "Telefoni"
+            name: "phones"
+            widget: "list"
+            field: { label: "Numero", name: "phone", widget: "string" }
+          - label: "Orari"
+            name: "hours"
+            widget: "list"
+            fields:
+              - { label: "Giorni", name: "days", widget: "string" }
+              - { label: "Orario", name: "time", widget: "string" }
