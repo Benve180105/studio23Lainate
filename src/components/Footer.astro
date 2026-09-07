@@ -2,6 +2,6 @@
 import { getEntry } from 'astro:content';
 const contatti = await getEntry('contatti', 'info');
 ---
-<footer class="border-t border-gray-200 px-4 py-8 text-center text-sm text-brand-ink/60">
+<footer class="border-t border-gray-200 px-4 py-8 text-center text-sm text-brand-ink/80">
   <p>&copy; {new Date().getFullYear()} Studio23 &mdash; {contatti!.data.address}</p>
 </footer>
