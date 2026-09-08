@@ -18,6 +18,7 @@ collections:
           - { label: "Titolo", name: "headline", widget: "string" }
           - { label: "Sottotitolo", name: "subtitle", widget: "text" }
           - { label: "Testo pulsante", name: "cta_text", widget: "string" }
+          - { label: "Immagine", name: "image", widget: "image", required: false }
 
   - name: "servizi"
     label: "Servizi"
@@ -28,6 +29,7 @@ collections:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Descrizione", name: "description", widget: "text" }
       - { label: "Ordine", name: "order", widget: "number", default: 1 }
+      - { label: "Immagine", name: "image", widget: "image", required: false }
 
   - name: "team"
     label: "Team"
@@ -39,6 +41,7 @@ collections:
       - { label: "Ruolo", name: "role", widget: "string" }
       - { label: "Bio", name: "bio", widget: "text" }
       - { label: "Ordine", name: "order", widget: "number", default: 1 }
+      - { label: "Foto", name: "image", widget: "image", required: false }
 
   - name: "contatti"
     label: "Contatti"

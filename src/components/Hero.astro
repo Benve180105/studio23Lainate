@@ -2,7 +2,8 @@
 import { getEntry } from 'astro:content';
 
 const hero = await getEntry('hero', 'hero');
-const { headline, subtitle, cta_text } = hero!.data;
+const { headline, subtitle, cta_text, image } = hero!.data;
+const heroImage = image || 'https://picsum.photos/seed/studio23-hero/600/450';
 ---
 <section id="home" class="reveal mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 py-20 text-center md:flex-row md:text-left">
   <div class="flex-1">
@@ -16,7 +17,7 @@ const { headline, subtitle, cta_text } = hero!.data;
     </a>
   </div>
   <img
-    src="https://picsum.photos/seed/studio23-hero/600/450"
+    src={heroImage}
     alt="Ambiente Studio23"
     class="flex-1 rounded-2xl object-cover shadow-lg"
     width="600"

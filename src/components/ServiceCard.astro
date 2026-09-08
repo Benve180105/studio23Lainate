@@ -6,12 +6,17 @@ interface Props {
   title: string;
   description: string;
   icon: 'physio' | 'nutrition';
+  image?: string;
 }
 
-const { title, description, icon } = Astro.props;
+const { title, description, icon, image } = Astro.props;
 ---
 <div class="reveal rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-  {icon === 'physio' ? <PhysioIcon /> : <NutritionIcon />}
+  {image ? (
+    <img src={image} alt={title} class="mb-4 h-40 w-full rounded-xl object-cover" />
+  ) : (
+    icon === 'physio' ? <PhysioIcon /> : <NutritionIcon />
+  )}
   <h3 class="mt-4 text-xl font-semibold text-brand-primary-dark">{title}</h3>
   <p class="mt-2 text-brand-ink/80">{description}</p>
 </div>

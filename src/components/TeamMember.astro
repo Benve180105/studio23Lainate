@@ -4,12 +4,14 @@ interface Props {
   role: string;
   bio: string;
   seed: string;
+  image?: string;
 }
-const { name, role, bio, seed } = Astro.props;
+const { name, role, bio, seed, image } = Astro.props;
+const photo = image || `https://picsum.photos/seed/studio23-${seed}/240/240`;
 ---
 <div class="reveal flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-sm">
   <img
-    src={`https://picsum.photos/seed/studio23-${seed}/240/240`}
+    src={photo}
     alt={name}
     width="120"
     height="120"

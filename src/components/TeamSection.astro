@@ -13,6 +13,7 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
         role={member.data.role}
         bio={member.data.bio}
         seed={member.id}
+        image={member.data.image}
       />
     ))}
   </div>

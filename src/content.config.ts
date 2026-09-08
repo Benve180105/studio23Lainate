@@ -7,6 +7,7 @@ const hero = defineCollection({
     headline: z.string(),
     subtitle: z.string(),
     cta_text: z.string(),
+    image: z.string().optional(),
   }),
 });
 
@@ -26,6 +27,7 @@ const servizi = defineCollection({
     title: z.string(),
     description: z.string(),
     order: z.number(),
+    image: z.string().optional(),
   }),
 });
 
@@ -36,6 +38,7 @@ const team = defineCollection({
     role: z.string(),
     bio: z.string(),
     order: z.number(),
+    image: z.string().optional(),
   }),
 });
 
